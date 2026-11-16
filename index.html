@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dhruv Ubhayaker</title>
+<meta name="description" content="Dhruv Ubhayaker — data science and computer science at Rutgers. Projects, experience and resume.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --fg: #f1f1f3;
+    --muted: rgba(241, 241, 243, .56);
+    --faint: rgba(241, 241, 243, .34);
+    --display: "Press Start 2P", ui-monospace, monospace;
+    --font: "Pixelify Sans", ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #000; color: var(--fg); font-family: var(--font); font-size: 19px; line-height: 1.7; -webkit-font-smoothing: none; font-smooth: never; }
+
+  /* Black backdrop with a few faint static glows, so the glass has something to catch. */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(46rem 30rem at 18% 8%, rgba(255,255,255,.10), transparent 62%),
+      radial-gradient(40rem 28rem at 88% 70%, rgba(255,255,255,.07), transparent 60%),
+      radial-gradient(30rem 22rem at 40% 105%, rgba(255,255,255,.05), transparent 60%);
+  }
+
+  /* Black liquid glass: dark translucent body, bright top rim, soft gloss across the upper half. */
+  .glass {
+    position: relative; border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.09);
+    background: linear-gradient(180deg, rgba(255,255,255,.085) 0%, rgba(255,255,255,.02) 38%, rgba(0,0,0,.35) 100%);
+    box-shadow: 0 24px 60px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.55), inset 0 0 0 1px rgba(255,255,255,.05), inset 0 -1px 0 rgba(255,255,255,.07);
+    -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  .page { min-height: 100svh; width: min(820px, 100%); margin-inline: auto; padding: 56px 20px 32px; display: flex; flex-direction: column; }
+  main { flex: 0 1 auto; margin-bottom: auto; padding: clamp(26px, 5vw, 48px); }
+  main > div > :last-child { margin-bottom: 0; }
+  h1 { margin: 0 0 48px; font-family: var(--display); font-size: clamp(20px, 4.4vw, 34px); font-weight: 400; line-height: 1.4; text-shadow: 3px 3px 0 rgba(255,255,255,.14); }
+  h1 a { text-decoration: none; }
+  h2 { margin: 0 0 30px; font-family: var(--display); font-size: 18px; color: #4ade80; font-weight: 400; line-height: 1.2; }
+  p { margin: 0 0 30px; max-width: 62ch; text-wrap: pretty; }
+  a { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-color: rgba(255,255,255,.75); transition: text-decoration-color .15s, color .15s; }
+  a:hover { text-decoration-color: #fff; color: #fff; }
+  .muted { color: var(--muted); }
+  .contact { margin-top: 52px; font-size: 17px; color: var(--muted); }
+
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; font-size: 18px; }
+  li span { color: var(--muted); }
+  li small { display: block; font-size: 15px; color: var(--faint); }
+
+  nav { margin-top: 28px; padding: 6px 18px; border-radius: 999px; text-align: center; font-family: var(--display); font-size: 11px; color: var(--faint); line-height: 2.6; }
+  nav a { color: var(--muted); text-decoration: none; margin: 0 4px; white-space: nowrap; }
+  nav a:hover { color: #fff; }
+  nav a[aria-current] { color: #4ade80; }
+  nav a[aria-current]::before { content: "> "; }
+  footer { margin-top: 26px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; font-family: var(--display); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #4ade80; margin-right: 10px; vertical-align: 1px; box-shadow: 0 0 10px #4ade80; }
+
+  .li-badge { margin-bottom: 28px; }
+  .li-card { display: flex; align-items: center; gap: 18px; width: min(504px, 100%); padding: 18px 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(0,0,0,.3)); box-shadow: inset 0 1px 0 rgba(255,255,255,.45); text-decoration: none; }
+  .li-card:hover { border-color: rgba(74,222,128,.6); }
+  .li-card svg { width: 44px; height: 44px; flex: none; color: #4ade80; }
+  .li-card b { display: block; font-family: var(--display); font-size: 12px; font-weight: 400; line-height: 1.6; }
+  .li-card span { display: block; font-size: 15px; color: var(--muted); line-height: 1.4; margin-top: 4px; }
+
+  [hidden] { display: none !important; }
+  @media (max-width: 520px) { body { font-size: 17px; } .page { padding-top: 48px; } h1 { margin-bottom: 44px; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <main class="glass">
+    <h1><a href="#/" id="name"></a></h1>
+    <div data-view="home" id="home"></div>
+    <div data-view="projects" hidden><h2>projects</h2><ul id="projects"></ul></div>
+    <div data-view="experience" hidden><h2>experience</h2><ul id="experience"></ul></div>
+    <div data-view="linkedin" hidden>
+      <h2>linkedin</h2>
+      <div class="li-badge" id="liBadge"></div>
+    </div>
+  </main>
+  <nav id="nav" class="glass" aria-label="Site"></nav>
+  <footer><span id="footLeft"></span><span><i class="dot"></i><span id="footRight"></span></span></footer>
+</div>
+
+<script>
+/* ============ EDIT THIS BLOCK — the page is rendered from it ============ */
+const CONFIG = {
+  name: "Dhruv Ubhayaker",
+  // Home page paragraphs. [text](url) makes a link.
+  intro: [
+    "Most recently an AI/ML intern at [Applied Materials](https://www.appliedmaterials.com).",
+    "I study [data science and computer science](https://www.rutgers.edu) at Rutgers, with a minor in business administration. I build AI/ML systems, data pipelines and full-stack apps, and I'm based between the SF Bay Area, NYC and New Jersey.",
+  ],
+  email: "dhruv.ubh@gmail.com",
+  linkedin: "https://www.linkedin.com/in/dhruvubh/",
+  github: "https://github.com/dhruvubh",
+  headline: "Data Science & Computer Science at Rutgers University",
+  resumeUrl: "resume.pdf",
+  footLeft: "2026 USA",
+  footRight: "Graduating Dec 2027",
+
+  // url: GitHub link (blank = no link).
+  projects: [
+    { name: "Texas Hold'em", text: "real-time multiplayer poker with a custom hand engine", url: "https://github.com/dhruvubh/Texas-Hold-Em---Full-Stack-Multiplayer-Poker-App" },
+    { name: "Crash Risk", text: "crash likelihood and severity from 15 years of accident data", url: "" },
+    { name: "Xpired", text: "marketplace for near-expiration food from grocery stores", url: "https://github.com/dhruvubh/XpiredMarketplace" },
+    { name: "NBA Predictor", text: "logistic regression for Jordan Poole double-doubles in R", url: "https://github.com/dhruvubh/JordanPooleLogisticRegression" },
+    { name: "Blackjack", text: "blackjack with token betting in Java", url: "https://github.com/dhruvubh/blackjack" },
+    { name: "Metl", text: "Wordle-style game themed around metals and gems", url: "https://github.com/dhruvubh/Metl" },
+  ],
+  experience: [
+    { name: "Applied Materials", text: "AI/ML intern: Fortran modernization, Python pipelines, GPU acceleration", when: "May 2026 – Sept 2026 · Santa Clara, CA", url: "https://www.appliedmaterials.com" },
+    { name: "Rutgers Clinical Trial Design Research", text: "AI research intern: BOP2-FE Bayesian phase II trial design", when: "May 2026 – Aug 2026 · New Brunswick, NJ", url: "" },
+    { name: "Rutgers MBS Externship Exchange", text: "AI research intern: LLMs and health equity in clinical decision-making", when: "Sep 2025 – Dec 2025 · New Brunswick, NJ", url: "" },
+    { name: "Rapalogix Health", text: "data science intern: Python automation, Tableau dashboards, R modeling", when: "May 2025 – Aug 2025 · New York, NY", url: "" },
+  ],
+};
+/* ======================================================================== */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ext = 'target="_blank" rel="noopener"';
+const md = s => esc(s).replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, `<a href="$2" ${ext}>$1</a>`);
+
+$("name").textContent = CONFIG.name;
+$("home").innerHTML = CONFIG.intro.map(p => `<p>${md(p)}</p>`).join("") +
+  `<p class="contact">contact: ${esc(CONFIG.email).replace("@", " [at] ").replace(/\.(?=[^.]*$)/, " [dot] ")}</p>`;
+
+const rows = items => items.map(i => `<li>${i.url ? `<a href="${esc(i.url)}" ${ext}>${esc(i.name)}</a>` : esc(i.name)} <span>— ${esc(i.text)}</span>${i.when ? `<small>${esc(i.when)}</small>` : ""}</li>`).join("");
+$("projects").innerHTML = rows(CONFIG.projects);
+$("experience").innerHTML = rows(CONFIG.experience);
+
+const NAV = [["Home", "#/"], ["Projects", "#/projects"], ["Experience", "#/experience"], ["Resume", CONFIG.resumeUrl, 1], ["GitHub", CONFIG.github, 1], ["LinkedIn", "#/linkedin"], ["Email", `mailto:${CONFIG.email}`]];
+$("nav").innerHTML = NAV.map(([label, href, out]) => `<a href="${esc(href)}" ${out ? ext : ""}>${label}</a>`).join(" / ");
+$("footLeft").textContent = CONFIG.footLeft;
+$("footRight").textContent = CONFIG.footRight;
+
+/* ---- LinkedIn: profile card ---- */
+{
+  const vanity = (CONFIG.linkedin.match(/\/in\/([^/?#]+)/) || [])[1] || "";
+  $("liBadge").innerHTML = `<a class="li-card" href="${esc(CONFIG.linkedin)}" ${ext}><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+       <div><b>${esc(CONFIG.name)}</b><span>${esc(CONFIG.headline)}</span><span>linkedin.com/in/${esc(vanity)} →</span></div></a>`;
+}
+
+function route() {
+  const view = ({ "#/projects": "projects", "#/experience": "experience", "#/linkedin": "linkedin" })[location.hash] || "home";
+  document.querySelectorAll("[data-view]").forEach(el => el.hidden = el.dataset.view !== view);
+  document.querySelectorAll("#nav a").forEach(a => a.getAttribute("href") === (view === "home" ? "#/" : `#/${view}`) ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+  scrollTo(0, 0);
+}
+addEventListener("hashchange", route); route();
+</script>
+</body>
+</html>
